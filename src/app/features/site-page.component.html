@@ -34,7 +34,10 @@
   <du-film [careers]="false" />
   <section class="energy-partner" aria-label="Soluções comerciais Repsol" duReveal>
     <div class="energy-partner-inner">
-      <div class="partner-stamp"><span>ENERGIA COM</span><div class="partner-logo-panel">@if (!repsolLogoFailed()) {<img class="partner-logo" [src]="config.repsolLogoPath" alt="Logótipo Repsol" width="248" height="70" loading="lazy" decoding="async" (error)="repsolLogoFailed.set(true)">} @else {<span class="partner-logo-fallback">Repsol</span>}</div><strong>Soluções comerciais<br>para casa e negócio.<span aria-hidden="true">↗</span></strong></div>
+      <div class="partner-stamp">
+        <span class="partner-stamp-label">DESAFIO ÚNICO · PARCEIRO OFICIAL</span>
+        <strong class="partner-stamp-name">Repsol<span class="partner-stamp-arrow" aria-hidden="true">↗</span></strong>
+      </div>
       <div class="partner-copy"><span class="label">A NOSSA ATIVIDADE COMERCIAL</span><h2>Uma escolha mais informada.<br><em>Uma relação mais próxima.</em></h2><p>Na Desafio Único trabalhamos com soluções comerciais de eletricidade e gás natural da Repsol. Acompanhamos clientes particulares e empresas na descoberta de opções adequadas às suas necessidades, do primeiro contacto à explicação das condições.</p><div class="partner-links"><a [href]="config.repsolResidentialUrl" target="_blank" rel="noopener noreferrer">Ofertas Repsol para casa ↗</a><a [href]="config.repsolBusinessUrl" target="_blank" rel="noopener noreferrer">Ofertas Repsol para empresas ↗</a></div><span class="partner-disclaimer">Condições e elegibilidade sujeitas à oferta em vigor do comercializador.</span></div>
     </div>
   </section>

@@ -408,25 +408,35 @@ du-lead { display: block; }
 }
 
 
-/* Phase 3 · Repsol visual integration and area pre-selection on applications. */
+/* Compact partner stamp: one relationship label and a restrained brand name. */
 .partner-stamp {
-  gap: 20px;
+  gap: 15px;
+  min-width: 0;
+  min-height: 190px;
+  overflow: hidden;
 }
-.partner-logo {
-  display: block;
-  width: min(100%, 248px);
-  height: auto;
+.partner-stamp .partner-stamp-label {
+  color: #afbfad;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  line-height: 1.6;
 }
-.partner-stamp strong {
-  display: grid;
-  gap: 10px;
-  justify-content: start;
-  font: 600 clamp(25px, 2.25vw, 37px)/1.12 'Manrope',sans-serif;
-  letter-spacing: -.045em;
+.partner-stamp .partner-stamp-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(22px, 3vw, 48px);
+  max-width: 100%;
+  font: 650 clamp(30px, 3vw, 46px)/1.13 'Manrope',sans-serif;
+  letter-spacing: -.01em;
+  overflow-wrap: anywhere;
 }
-.partner-stamp strong span {
+.partner-stamp .partner-stamp-arrow {
+  flex: 0 0 auto;
+  margin-left: auto;
   color: var(--lime);
-  font: 300 31px/1 'Manrope',sans-serif;
+  font: 300 clamp(24px, 2.5vw, 32px)/1 'Manrope',sans-serif;
 }
 .interest-fieldset {
   margin: 0 0 24px;
@@ -477,11 +487,8 @@ du-lead { display: block; }
   color: #fff;
 }
 @media (max-width: 800px) {
-  .partner-logo { width: min(100%, 220px); }
 }
 @media (max-width: 620px) {
-  .partner-stamp strong { font-size: 23px; }
-  .partner-stamp strong span { font-size: 25px; }
   .interest-grid { gap: 8px; }
   .interest-choice { flex: 1 1 100%; }
   .interest-choice span { width: 100%; justify-content: center; }
@@ -652,30 +659,3 @@ du-lead { display: block; }
   .footer-contact-link, .footer-nav-links a, .footer-map-link, .lead-direct-phone span { transition: none; }
 }
 
-/* Logótipo oficial da Repsol: o painel claro respeita as cores da marca no selo escuro. */
-.partner-logo-panel {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: min(100%, 310px);
-  min-height: 106px;
-  padding: 23px 19px;
-  border-radius: 4px;
-  background: #fff;
-}
-.partner-logo-panel .partner-logo {
-  display: block;
-  width: min(100%, 248px);
-  height: auto;
-  max-height: 72px;
-  object-fit: contain;
-}
-@media (max-width: 620px) {
-  .partner-logo-panel { min-height: 93px; padding: 18px; }
-}
-
-.partner-logo-fallback {
-  color: #0b2640;
-  font: 750 clamp(33px, 3vw, 48px)/1.1 'Manrope', sans-serif;
-  letter-spacing: -.06em;
-}

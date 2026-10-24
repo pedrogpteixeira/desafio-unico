@@ -12,7 +12,6 @@ import { LeadSegment, LeadService } from '../core/lead-form';
 export class SitePageComponent {
   private readonly data = toSignal(inject(ActivatedRoute).data);
   readonly careers = computed(() => !!this.data()?.['careers']);
-  readonly repsolLogoFailed = signal(false);
   readonly config = siteConfig;
   readonly jobs = jobs;
   readonly filter = signal('Todas');

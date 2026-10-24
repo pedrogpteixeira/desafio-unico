@@ -15,9 +15,6 @@ export const siteConfig = {
   // O uso de logótipos, claims de parceria e ofertas concretas requer validação com a Desafio Único/Repsol.
   repsolResidentialUrl: 'https://www.repsol.pt/particulares/casa/eletricidade-gas/',
   repsolBusinessUrl: 'https://www.repsol.pt/profissionais/solucoes/eletricidade-e-gas/',
-  // Atualizado: ficheiro SVG publicado pela Repsol (identidade de 2025).
-  // Dependência externa: caso seja aprovado, guardar futuramente uma cópia local oficial.
-  repsolLogoPath: 'https://www.repsol.com/content/dam/global/logotipos/repsol/logo-repsol.svg',
   windImage: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=2000&q=85',
   teamImage: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=85',
   // Até existirem dois filmes aprovados, as páginas partilham o mesmo vídeo ilustrativo.
