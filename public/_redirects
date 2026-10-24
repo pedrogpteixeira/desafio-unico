@@ -1,0 +1,2 @@
+# Existing static files (including netlify-forms.html) take priority.
+/* /index.html 200

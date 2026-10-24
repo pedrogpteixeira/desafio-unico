@@ -1,0 +1,39 @@
+<section id="candidatura" class="section application">
+  <div><span class="label">04 — DÁ O PRIMEIRO PASSO</span><h2>Não encontras<br>a tua vaga?<br><em>Cria o teu<br>próprio desafio.</em></h2><p>Conta-nos quem és e o que te move.<br>Envia a tua candidatura espontânea.</p><span class="asterisk" aria-hidden="true">✳</span></div>
+  <form name="candidaturas" method="POST" enctype="multipart/form-data" [formGroup]="form" (ngSubmit)="submit(cvInput)" [attr.aria-busy]="busy()">
+    <input type="hidden" name="form-name" value="candidaturas">
+    <div class="form-grid">
+      <label>Nome completo *<input name="name" formControlName="name" maxlength="120" placeholder="Como te chamas?" autocomplete="name" required [attr.aria-invalid]="submitted() && form.controls.name.invalid" aria-describedby="name-error">
+        @if(submitted() && form.controls.name.invalid){<small id="name-error" class="field-error">Introduz o teu nome.</small>}
+      </label>
+      <label>Email *<input name="email" formControlName="email" type="email" maxlength="200" placeholder="O teu email" autocomplete="email" required [attr.aria-invalid]="submitted() && form.controls.email.invalid" aria-describedby="email-error">
+        @if(submitted() && form.controls.email.invalid){<small id="email-error" class="field-error">Introduz um email válido.</small>}
+      </label>
+      <label>Telefone<input name="phone" formControlName="phone" type="tel" maxlength="30" placeholder="O teu contacto" autocomplete="tel"></label>
+      <label>Função ou vaga pretendida *<select name="position" formControlName="position" required><option>Candidatura espontânea</option>@for(job of jobs;track job.id){<option>{{job.title}}</option>}</select></label>
+    </div>
+    <fieldset class="interest-fieldset">
+      <legend>Área de interesse *</legend>
+      <div class="interest-grid" role="radiogroup" aria-label="Área de interesse">
+        @for(area of areas; track area) {
+          <label class="interest-choice" [class.is-selected]="form.controls.interestArea.value === area">
+            <input type="radio" name="interestArea" formControlName="interestArea" [value]="area">
+            <span>{{ area }}</span>
+          </label>
+        }
+      </div>
+    </fieldset>
+    <label>LinkedIn ou portefólio<input name="portfolio" formControlName="portfolio" type="url" maxlength="500" placeholder="https://" [attr.aria-invalid]="submitted() && form.controls.portfolio.invalid" aria-describedby="portfolio-error">
+      @if(submitted() && form.controls.portfolio.invalid){<small id="portfolio-error" class="field-error">Introduz um endereço completo, começando por https://.</small>}
+    </label>
+    <label>O que te traz até nós?<textarea name="message" formControlName="message" maxlength="5000" rows="3" placeholder="Fala-nos um pouco sobre ti e as tuas ambições."></textarea></label>
+    <label class="upload">↥ <strong>Adiciona o teu CV *</strong><span>PDF · máximo 5 MB</span><input #cvInput name="cv" required type="file" accept="application/pdf,.pdf" (change)="chooseFile($event)" aria-describedby="cv-error" [attr.aria-invalid]="!!fileError()"></label>
+    @if(fileError()){<p id="cv-error" class="field-error" role="alert">{{fileError()}}</p>}
+    <label class="consent"><input name="consent" formControlName="consent" type="checkbox" required [attr.aria-invalid]="submitted() && form.controls.consent.invalid"><span>Autorizo o tratamento dos dados enviados para análise da minha candidatura. <button type="button" (click)="privacy.open()">Informação de privacidade</button></span></label>
+    @if(submitted() && form.controls.consent.invalid){<p class="field-error">É necessário confirmar a autorização para enviar.</p>}
+    <p class="honeypot" aria-hidden="true"><label>Não preencher<input name="bot-field" formControlName="bot-field" tabindex="-1" autocomplete="off"></label></p>
+    <button type="submit" [disabled]="busy()" class="button lime submit">{{busy()?'A enviar…':'Enviar candidatura'}} <span>↗</span></button>
+    <p class="form-status" [class.field-error]="failed()" role="status" aria-live="polite">{{status()}}</p>
+  </form>
+</section>
+<du-privacy #privacy />

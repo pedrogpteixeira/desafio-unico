@@ -1,0 +1,44 @@
+<section id="contacto" class="section lead-section" aria-labelledby="lead-title">
+  <div class="lead-copy">
+    <span class="label">05 — FALAR DE ENERGIA</span>
+    <h2 id="lead-title">A próxima decisão<br>começa com uma <em>conversa.</em></h2>
+    <p class="lead-intro">Partilha as necessidades da tua casa ou empresa. Ajudamos-te a conhecer as soluções Repsol disponíveis, com explicações claras e acompanhamento humano.</p>
+    <div class="lead-steps"><div><span>01</span><p>Conta-nos o que precisas.</p></div><div><span>02</span><p>Entramos em contacto para conhecer o teu perfil.</p></div><div><span>03</span><p>Apresentamos as opções e respetivas condições.</p></div></div>
+    <div class="lead-direct-contact" aria-label="Contacto direto">
+      <span class="lead-direct-eyebrow">PREFERES FALAR CONNOSCO?</span>
+      <a class="lead-direct-phone" [href]="contact.phoneHref">{{ contact.phone }} <span aria-hidden="true">↗</span></a>
+      <a class="lead-direct-email" [href]="contact.emailHref">{{ contact.email }}</a>
+      <span class="lead-direct-hours">{{ contact.hours }}</span>
+    </div>
+    <p class="lead-fine">Este formulário é um pedido de contacto, não um contrato de fornecimento nem uma simulação de poupança garantida.</p>
+  </div>
+  <form name="pedidos-energia" method="POST" [formGroup]="form" (ngSubmit)="submit()" class="lead-form" [attr.aria-busy]="busy()" novalidate>
+    <input type="hidden" name="form-name" value="pedidos-energia">
+    <span class="lead-form-title">VAMOS ENCONTRAR A TUA SOLUÇÃO <span aria-hidden="true">↗</span></span>
+    <div class="lead-segment-choice" role="group" aria-label="Tipo de cliente">
+      @for (segment of segments; track segment) {
+        <button type="button" [class.is-selected]="form.controls.segment.value === segment" [attr.aria-pressed]="form.controls.segment.value === segment" (click)="setRequest(segment, form.controls.service.value)">{{segment === 'Particular' ? 'Para casa' : 'Para empresa'}}</button>
+      }
+    </div>
+    <div class="form-grid">
+      <label>Nome *<input name="name" formControlName="name" autocomplete="name" required maxlength="120" placeholder="O teu nome" [attr.aria-invalid]="submitted() && form.controls.name.invalid">@if (submitted() && form.controls.name.invalid) {<small class="field-error">Introduz o teu nome.</small>}</label>
+      <label>Telefone *<input name="phone" formControlName="phone" type="tel" autocomplete="tel" required maxlength="25" placeholder="O teu contacto" [attr.aria-invalid]="submitted() && form.controls.phone.invalid">@if (submitted() && form.controls.phone.invalid) {<small class="field-error">Indica um telefone válido.</small>}</label>
+      <label>Email *<input name="email" formControlName="email" type="email" autocomplete="email" required maxlength="200" placeholder="O teu email" [attr.aria-invalid]="submitted() && form.controls.email.invalid">@if (submitted() && form.controls.email.invalid) {<small class="field-error">Introduz um email válido.</small>}</label>
+      <label>Procuro *<select name="service" formControlName="service" required>@for (service of services; track service) {<option [value]="service">{{service}}</option>}</select></label>
+    </div>
+    <input type="hidden" name="segment" [value]="form.controls.segment.value">
+    @if (form.controls.segment.value === 'Empresa') {
+      <label>Nome da empresa *<input name="company" formControlName="company" autocomplete="organization" required maxlength="180" placeholder="Empresa / estabelecimento" [attr.aria-invalid]="submitted() && form.controls.company.invalid">@if (submitted() && form.controls.company.invalid) {<small class="field-error">Indica o nome da empresa.</small>}</label>
+    } @else {
+      <input type="hidden" name="company" formControlName="company">
+    }
+    <label>Como podemos ajudar? <span class="optional">(opcional)</span><textarea name="message" formControlName="message" maxlength="1500" rows="3" placeholder="Por exemplo, quero rever o contrato de eletricidade para minha casa ou negócio."></textarea></label>
+    <label class="consent"><input type="checkbox" name="consent" formControlName="consent" required [attr.aria-invalid]="submitted() && form.controls.consent.invalid"><span>Autorizo a Desafio Único a utilizar os dados fornecidos para responder ao meu pedido de contacto comercial. <button type="button" (click)="privacy.open()">Informação de privacidade</button>.</span></label>
+    @if (submitted() && form.controls.consent.invalid) {<p class="field-error">É necessária a tua autorização para enviar o pedido.</p>}
+    <p class="honeypot" aria-hidden="true"><label>Não preencher<input name="bot-field" formControlName="bot-field" tabindex="-1" autocomplete="off"></label></p>
+    <button class="button lime submit" type="submit" [disabled]="busy()">{{ busy() ? 'A enviar…' : 'Pedir análise sem compromisso' }} <span aria-hidden="true">↗</span></button>
+    <p class="form-status" [class.field-error]="failed()" role="status" aria-live="polite">{{ status() }}</p>
+    <p class="lead-smallprint">Sem promessas de poupança ou condições contratuais automáticas. A proposta está sujeita a análise e às tarifas Repsol em vigor.</p>
+  </form>
+</section>
+<du-privacy #privacy />

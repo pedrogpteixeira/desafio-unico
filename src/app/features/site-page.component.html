@@ -1,0 +1,90 @@
+<section class="hero" [class.career-hero]="careers()" [style.background-image]="'url(' + (careers() ? config.teamImage : config.windImage) + ')'">
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-main">
+    <div class="hero-content">
+      <div class="eyebrow"><span class="dot"></span>{{ careers() ? 'O TEU PRÓXIMO DESAFIO COMEÇA AQUI' : 'ENERGIA PARA CASA E PARA NEGÓCIOS' }}</div>
+      <h1>@if (careers()) { O futuro tem<br>a tua <em>energia.</em> } @else { A energia muda.<br>O desafio é <em>único.</em> }</h1>
+      <p>{{ careers() ? 'Traz a tua vontade de ir mais longe. Descobre onde o teu talento se pode ligar ao nosso desafio.' : 'Para casa ou para o teu negócio, ajudamos-te a conhecer soluções de eletricidade e gás natural da Repsol. Começamos por ouvir o que precisas.' }}</p>
+      <div class="hero-actions">
+        <a class="button lime" [routerLink]="careers() ? '/carreiras' : '/'" [fragment]="careers() ? 'oportunidades' : 'solucoes'">{{ careers() ? 'Explorar oportunidades' : 'Encontrar a minha solução' }} <span aria-hidden="true">↗</span></a>
+        <a class="text-link" [routerLink]="careers() ? '/carreiras' : '/'" [fragment]="careers() ? 'cultura' : 'contacto'">{{ careers() ? 'Conhece o nosso espírito' : 'Pedir contacto' }} <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+    <div class="hero-context" aria-hidden="true"><span>DU — SETOR ENERGÉTICO</span><strong>ELETRICIDADE<br>GÁS NATURAL<br>PESSOAS</strong><span>CONEXÃO / PROXIMIDADE</span></div>
+  </div>
+  <div class="hero-foot"><span>UMA NOVA ENERGIA PARA {{ careers() ? 'A TUA CARREIRA' : 'O TEU DIA A DIA' }}</span><span>CONTINUA A DESCOBRIR <span aria-hidden="true">↓</span></span></div>
+  <span class="hero-index">{{ careers() ? '02' : '01' }} / DU</span>
+</section>
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    @for (copy of [0, 1]; track copy) {
+      <div class="ticker-group">
+        @for (repeat of [0, 1, 2, 3, 4, 5]; track repeat) {
+          <span class="ticker-line">ENERGIA QUE APROXIMA <b>✳</b> PESSOAS QUE TRANSFORMAM <b>✳</b> DESAFIOS QUE NOS MOVEM <b>✳</b></span>
+        }
+      </div>
+    }
+  </div>
+</div>
+@if (!careers()) {
+  <section id="sobre" class="section intro" duReveal>
+    <div><span class="label">01 — A DESAFIO ÚNICO</span><h2>O que nos move<br>vai além da <em>energia.</em></h2></div>
+    <div class="intro-copy"><p class="lead">Por trás de cada escolha, há uma pessoa. É aí que começa o nosso trabalho.</p><p>Na Desafio Único, atuamos no setor da eletricidade e do gás, aproximando clientes particulares e empresas das soluções que fazem sentido para as suas necessidades.</p><p>Aproximamos soluções e necessidades, com atenção a quem está do outro lado. Porque uma boa relação tem sempre energia para crescer.</p><a class="underlink" routerLink="/carreiras">Conhece o lado humano do desafio <span>↗</span></a></div>
+  </section>
+  <du-film [careers]="false" />
+  <section class="energy-partner" aria-label="Soluções comerciais Repsol" duReveal>
+    <div class="energy-partner-inner">
+      <div class="partner-stamp"><span>ENERGIA COM</span><div class="partner-logo-panel">@if (!repsolLogoFailed()) {<img class="partner-logo" [src]="config.repsolLogoPath" alt="Logótipo Repsol" width="248" height="70" loading="lazy" decoding="async" (error)="repsolLogoFailed.set(true)">} @else {<span class="partner-logo-fallback">Repsol</span>}</div><strong>Soluções comerciais<br>para casa e negócio.<span aria-hidden="true">↗</span></strong></div>
+      <div class="partner-copy"><span class="label">A NOSSA ATIVIDADE COMERCIAL</span><h2>Uma escolha mais informada.<br><em>Uma relação mais próxima.</em></h2><p>Na Desafio Único trabalhamos com soluções comerciais de eletricidade e gás natural da Repsol. Acompanhamos clientes particulares e empresas na descoberta de opções adequadas às suas necessidades, do primeiro contacto à explicação das condições.</p><div class="partner-links"><a [href]="config.repsolResidentialUrl" target="_blank" rel="noopener noreferrer">Ofertas Repsol para casa ↗</a><a [href]="config.repsolBusinessUrl" target="_blank" rel="noopener noreferrer">Ofertas Repsol para empresas ↗</a></div><span class="partner-disclaimer">Condições e elegibilidade sujeitas à oferta em vigor do comercializador.</span></div>
+    </div>
+  </section>
+  <section id="solucoes" class="section solutions" duReveal>
+    <div class="section-heading"><div><span class="label">03 — SOLUÇÕES DE ENERGIA</span><h2>Uma solução à medida<br><em>de cada necessidade.</em></h2></div><p>Duas realidades, um ponto de partida:<br>compreender as tuas necessidades.</p></div>
+    <div class="audience-grid">
+      @for (audience of audiences; track audience.number) {
+        <article class="audience-card" duReveal>
+          <div class="audience-top"><span>{{ audience.number }} / {{ audience.label }}</span><span aria-hidden="true">↗</span></div>
+          <h3>{{ audience.title }}</h3>
+          <p>{{ audience.description }}</p>
+          <ul>@for (point of audience.points; track point) {<li>{{ point }}</li>}</ul>
+          <button type="button" class="audience-link" (click)="requestContact(audience.segment)">{{ audience.cta }} <span aria-hidden="true">↗</span></button>
+        </article>
+      }
+    </div>
+    <div class="service-heading"><span class="label">O QUE PODEMOS ANALISAR CONTIGO</span><p>Da eletricidade às soluções combinadas: informação simples, acompanhamento humano.</p></div>
+    <div class="service-grid">@for (service of services; track service.n) {
+      <article duReveal><div class="service-top"><span>{{ service.icon }}</span><small>{{ service.n }}</small></div><h3>{{ service.title }}</h3><p>{{ service.description }}</p><button type="button" (click)="requestService(service.interest)" [attr.aria-label]="'Pedir informação sobre ' + service.title">Pedir informação <span aria-hidden="true">↗</span></button></article>
+    }</div>
+    <div class="solution-footnote">As opções apresentadas dependem do perfil de consumo, das condições comerciais em vigor e da disponibilidade do serviço. O gás natural não é apresentado como contratação isolada.</div>
+  </section>
+  <section id="abordagem" class="section approach" duReveal><span class="label">04 — A NOSSA FORMA DE ESTAR</span><h2>Boas relações.<br><em>Melhores decisões.</em></h2><div class="steps">@for (step of steps; track step.title; let i = $index) { <div><span>0{{ i + 1 }}</span><h3>{{ step.title }}</h3><p>{{ step.description }}</p></div> }</div></section>
+  <du-lead />
+} @else {
+  <section id="cultura" class="section intro" duReveal><div><span class="label">01 — O NOSSO ESPÍRITO</span><h2>Talento individual.<br><em>Energia coletiva.</em></h2></div><div class="intro-copy"><p class="lead">Há desafios que fazem mais sentido quando são partilhados.</p><p>Queremos conhecer pessoas curiosas, com iniciativa e gosto por criar boas relações. Pessoas que ouvem, aprendem e contribuem com a sua própria perspetiva, seja no contacto com clientes particulares, empresas ou nas equipas de suporte.</p><div class="values"><span>01 / Proximidade</span><span>02 / Espírito de equipa</span><span>03 / Vontade de crescer</span></div></div></section>
+  <du-film [careers]="true" />
+}
+@if (careers()) {
+  <section id="oportunidades" class="section opportunities" duReveal>
+    <div class="section-heading"><div><span class="label">03 — OPORTUNIDADES</span><h2>Encontra o teu<br><em>próximo desafio.</em></h2></div><p>Perfis diferentes. A mesma vontade<br>de construir algo em conjunto.</p></div>
+    @if (config.jobsAreExamples) { <div class="vacancy-note">Pré-visualização · Os perfis abaixo são exemplos de vagas, sujeitos a confirmação.</div> }
+    <div class="filters" aria-label="Filtrar oportunidades">@for (area of filters; track area) { <button [attr.aria-pressed]="filter() === area" [class.chosen]="filter() === area" (click)="filter.set(area)">{{ area }}@if (area === 'Todas') { ({{ jobs.length }}) }</button> }</div>
+    <div class="jobs">@for (job of filteredJobs(); track job.id) {
+      <button class="job" (click)="openJob(job)"><span class="job-area">{{ job.area }} @if (config.jobsAreExamples) { <small>EXEMPLO</small> }</span><h3>{{ job.title }}</h3><p>{{ job.profile }}</p><div class="job-bottom"><span>{{ job.place }}<br>{{ job.type }}</span><b>↗</b></div></button>
+    } @empty { <p>Não há oportunidades nesta área neste momento. Envia uma candidatura espontânea.</p> }</div>
+  </section>
+  <du-application />
+} @else {
+  <section class="section careers-cta" duReveal><div><span class="label">06 — CARREIRAS</span><h2>Há lugar para a tua<br><em>energia.</em></h2><p>O próximo passo da tua carreira pode começar com um novo desafio.</p><a class="button dark" routerLink="/carreiras">Descobre as oportunidades <span>↗</span></a></div><div class="big-arrow" aria-hidden="true">↗</div></section>
+}
+<dialog #jobDialog class="modal native-modal" aria-labelledby="job-title">
+  <button class="close" autofocus (click)="closeJob()">Fechar ×</button>
+  @if (selected(); as job) {
+    <span class="label">{{ config.jobsAreExamples ? 'PERFIL EXEMPLIFICATIVO' : 'OPORTUNIDADE' }} · {{ job.area }}</span>
+    <h2 id="job-title">{{ job.title }}</h2><p>{{ job.profile }}</p>
+    <h3>O desafio</h3><ul>@for (task of job.tasks; track task) { <li>{{ task }}</li> }</ul>
+    <h3>O teu perfil</h3><ul>@for (skill of job.skills; track skill) { <li>{{ skill }}</li> }</ul>
+    <p>{{ job.place }} · {{ job.type }}</p>
+    @if (config.jobsAreExamples) { <p>Esta vaga é demonstrativa; podes manifestar interesse através de uma candidatura espontânea.</p> }
+    <button class="button lime" (click)="apply()">{{ config.jobsAreExamples ? 'Enviar candidatura espontânea' : 'Candidatar-me a esta vaga' }} ↗</button>
+  }
+</dialog>

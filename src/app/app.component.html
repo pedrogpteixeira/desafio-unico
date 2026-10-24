@@ -1,0 +1,55 @@
+<a class="skip-link" href="#main-content">Saltar para o conteúdo</a>
+<header>
+  <a class="brand" routerLink="/" aria-label="Desafio Único, início"><span class="symbol">d<span>u</span><i></i></span><span>desafio<br><b>único.</b></span></a>
+  <button class="mobile" aria-label="Abrir menu" [attr.aria-expanded]="menu()" aria-controls="main-nav" (click)="menu.set(!menu())">☰</button>
+  <nav id="main-nav" [class.open]="menu()" (click)="menu.set(false)" aria-label="Navegação principal">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Início</a>
+    <a routerLink="/" fragment="sobre">Quem somos</a>
+    <a routerLink="/" fragment="solucoes">Soluções de energia</a>
+    <a routerLink="/carreiras" routerLinkActive="active">Carreiras <span class="dot"></span></a>
+  </nav>
+  <a class="nav-cta" routerLink="/" fragment="contacto">Pedir uma análise <span aria-hidden="true">↗</span></a>
+</header>
+<main id="main-content"><router-outlet /></main>
+<footer class="site-footer" aria-label="Informações da Desafio Único">
+  <div class="footer-cta">
+    <div class="footer-cta-copy">
+      <span class="footer-kicker"><span class="footer-kicker-dot" aria-hidden="true"></span> ESTAMOS AQUI PARA AJUDAR</span>
+      <h2>O próximo passo começa<br>com uma <em>conversa.</em></h2>
+      <p>Para a tua casa ou empresa, ajudamos-te a explorar soluções de energia com clareza.</p>
+    </div>
+    <a class="button lime footer-cta-button" routerLink="/" fragment="contacto">Pedir análise de energia <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="footer-grid">
+    <div class="footer-identity">
+      <a class="brand" routerLink="/" aria-label="Desafio Único, início"><span class="symbol">d<span>u</span><i></i></span><span>desafio<br><b>único.</b></span></a>
+      <p>A energia que nos liga.<br>O desafio que nos move.</p>
+      <span class="footer-signature">DU / ENERGIA · PESSOAS · PROXIMIDADE</span>
+    </div>
+    <div class="footer-column footer-nav-links">
+      <h3>EXPLORAR</h3>
+      <a routerLink="/" fragment="sobre">Quem somos</a>
+      <a routerLink="/" fragment="solucoes">Soluções de energia</a>
+      <a routerLink="/" fragment="contacto">Pedir contacto <span aria-hidden="true">↗</span></a>
+      <a routerLink="/carreiras">Carreiras <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="footer-column footer-contact-info">
+      <h3>FALA CONNOSCO</h3>
+      <a class="footer-contact-link" [href]="contact.phoneHref" [attr.aria-label]="'Ligar para ' + contact.phone">{{ contact.phone }} <span aria-hidden="true">↗</span></a>
+      <a class="footer-contact-link footer-email" [href]="contact.emailHref">{{ contact.email }} <span aria-hidden="true">↗</span></a>
+      <span class="footer-micro-label">HORÁRIO</span>
+      <p class="footer-hours">{{ contact.hours }}</p>
+    </div>
+    <address class="footer-column footer-location">
+      <h3>VISITA-NOS</h3>
+      <p>{{ contact.addressStreet }}<br>{{ contact.addressCity }}</p>
+      <a class="footer-map-link" [href]="contact.mapsHref" target="_blank" rel="noopener noreferrer" aria-label="Abrir a morada da Desafio Único no Google Maps (nova janela)">Ver no mapa <span aria-hidden="true">↗</span></a>
+    </address>
+  </div>
+  <div class="footer-bottom">
+    <span>© {{ year }} Desafio Único</span>
+    <button type="button" (click)="privacy.open()">Privacidade</button>
+    <span>FEITO DE PESSOAS. MOVIDO A ENERGIA.</span>
+  </div>
+</footer>
+<du-privacy #privacy />

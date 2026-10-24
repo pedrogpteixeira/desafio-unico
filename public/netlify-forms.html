@@ -1,0 +1,30 @@
+<!doctype html><html lang="pt-PT"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>Definição de formulário — Desafio Único</title></head><body>
+<!-- Netlify parses this static file after the Angular build. Keep field names in sync. -->
+<form name="candidaturas" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" action="/obrigado.html" hidden>
+  <input type="hidden" name="form-name" value="candidaturas">
+  <input name="name" type="text">
+  <input name="email" type="email">
+  <input name="phone" type="tel">
+  <input name="interestArea" type="text">
+  <input name="position" type="text">
+  <input name="portfolio" type="url">
+  <textarea name="message"></textarea>
+  <input name="consent" type="checkbox">
+  <input name="bot-field" type="text">
+  <input name="cv" type="file">
+</form>
+<!-- Contactos comerciais: formulário separado das candidaturas para acesso e conservação distintos. -->
+<form name="pedidos-energia" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/obrigado.html" hidden>
+  <input type="hidden" name="form-name" value="pedidos-energia">
+  <input name="name" type="text">
+  <input name="phone" type="tel">
+  <input name="email" type="email">
+  <input name="segment" type="text">
+  <input name="service" type="text">
+  <input name="company" type="text">
+  <textarea name="message"></textarea>
+  <input name="consent" type="checkbox">
+  <input name="bot-field" type="text">
+</form>
+<p>Consulta as oportunidades na <a href="/carreiras">página de carreiras</a>.</p>
+</body></html>
