@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "start": "ng serve",
-    "build": "ng build --configuration production && node scripts/verify-forms.mjs",
+    "build": "ng build --configuration production && node scripts/verify-forms.mjs && node scripts/finalize-seo.mjs",
     "check": "tsc --noEmit -p tsconfig.app.json",
-    "test:forms": "node --test scripts/forms.test.mjs"
+    "test:forms": "node --test scripts/forms.test.mjs",
+    "test:seo": "node --test scripts/seo.test.mjs"
   },
   "engines": {
     "node": "^22.22.3 || ^24.15.0 || ^26.0.0"

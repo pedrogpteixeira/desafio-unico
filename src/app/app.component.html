@@ -11,6 +11,7 @@
   <a class="nav-cta" routerLink="/" fragment="contacto">Pedir uma análise <span aria-hidden="true">↗</span></a>
 </header>
 <main id="main-content"><router-outlet /></main>
+@if (initialRouteReady()) {
 <footer class="site-footer" aria-label="Informações da Desafio Único">
   <div class="footer-cta">
     <div class="footer-cta-copy">
@@ -52,4 +53,5 @@
     <span>FEITO DE PESSOAS. MOVIDO A ENERGIA.</span>
   </div>
 </footer>
+}
 <du-privacy #privacy />

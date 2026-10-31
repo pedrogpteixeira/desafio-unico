@@ -4,6 +4,11 @@
 [build.environment]
   NODE_VERSION = "24.19.0"
 [[redirects]]
+  from = "/carreiras"
+  to = "/carreiras/"
+  status = 301
+  force = true
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
